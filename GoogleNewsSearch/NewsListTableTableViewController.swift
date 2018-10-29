@@ -10,11 +10,13 @@ import UIKit
 
 class NewsListTableViewController: UITableViewController,UITextFieldDelegate {
     
+    
     weak var activityIndicatorView:UIActivityIndicatorView!
     
     // データソースとする配列
     var newsItemList:[Item] = []
     
+    // 検索窓
     @IBOutlet weak var searchTextField: UITextField!
     
     override func viewDidLoad() {
@@ -107,10 +109,17 @@ class NewsListTableViewController: UITableViewController,UITextFieldDelegate {
     // リフレッシュコントロール下げた時
     @objc func runningRefresh(_ refreshControll:UIRefreshControl) {
 
+        // キーボード消して
+        searchTextField.endEditing(true)
+        
         searchOrMainNews()
     }
 
     @IBAction func tapSearchButton(_ sender: UIBarButtonItem) {
+        
+        // キーボード消して
+        searchTextField.endEditing(true)
+        
         searchOrMainNews()
     }
     
